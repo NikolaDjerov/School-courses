@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -26,7 +27,7 @@ namespace hangman
 └───────────────────────────┘
 
 ";
-            const string LossScreenText = @"
+            const string lossScreen = @"
 ┌────────────────────────────────────┐
 │  LLL          OOOO    SSSS   SSSS  │
 │  LLL         OO  OO  SS  SS SS  SS │
@@ -413,17 +414,27 @@ namespace hangman
     @" __/══════╩═══"
 };
 
-            int incorrectGuessCount = 0;
+            
+            string[] words = ReadWordsFromFile();
+            Console.CursorVisible = false;
             while (true)
             {
-                string[] words = ReadWordsFromFile(); 
-                Console.CursorVisible = false;
+
                 string word = GetRandomWord(words);
                 string wordToGuess = new(" ", word.Length);
-                
-                List<char> playerUsedLetter= new List<char>();
+
+                List<char> playerUsedLetter = new List<char>();
+                int incorrectGuessCount = 0;
                 DrawCurrentGameState(false, incorrectGuessCount, wordToGuess, playerUsedLetter);
-                Console.WriteLine();
+                Console.WriteLine("If you want to play again, press [Enter] else type 'quit':");
+                string input = Console.ReadLine();
+                if (input == "quit")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Thank you for playing! Hangman was closed.");
+                    return;
+                }
+                Console.Clear();
             }
 
             string[] ReadWordsFromFile()
@@ -443,13 +454,7 @@ namespace hangman
                 Console.WriteLine("If you want to play again, press [Enter]. Else type 'quit'");
                 string input = Console.ReadLine();
 
-                if (input == "quit")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Thank you for playing! Hangman was closed.");
-                    return;
-                }
-                Console.Clear();
+
                 while (true)
                 {
                     string playerInput = Console.ReadLine().ToLower();
@@ -474,29 +479,29 @@ namespace hangman
                     if (playerWins)
                     {
                         Console.Clear();
-                        Console.WriteLine(WinScreenText);
+                        Console.WriteLine(winScreen);
                         Console.WriteLine($"The word you guessed is [{word}]");
 
                         break;
                     }
-                    bool playerWins = CheckIfPlayerWins(wordToGuess);
+                    bool playerLoses = CheckIfPlayerLoses(incorrectGuessCount);
                     if (playerLoses)
                     {
                         Console.SetCursorPosition(0, 0);
-                        DrawDeathAnimation(deathAnimationFrames);
+                        DrawDeathAnimation(DeathAnimationFrames);
                         Console.Clear();
-                        Console.WriteLine(LossScreenText);
+                        Console.WriteLine(lossScreen);
                         Console.WriteLine($"The exact word is [{word}]");
 
                         break;
                     }
                 }
             }
-            string GetRandomWord(string[] words)
+            string GetRandomWord(string[] word)
             {
                 Random random = new Random();
-                string word = words[random.Next(words.Length)];
-                return word.ToLower();
+                string worde = words[random.Next(words.Length)];
+                return worde.ToLower();
             }
             void DrawCurrentGameState(bool inputIsInvalid, int incorrectGuess, string guessedWord, List<char> playerUsedLetters)
             {
@@ -511,15 +516,53 @@ namespace hangman
                 }
                 Console.WriteLine("Your symbol: ");
             }
+
+            bool CheckIfPlayerWins(string wordToGuess)
+            {
+                if (wordToGuess.Contains(" "))
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            bool CheckIfPlayerLoses(int icorrectGuessCount)
+            {
+                if (incorrectGuessCount == 6)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+
+
             void DrawDeathAnimation(string[] deathAnimation)
             {
-                for(int i = 0; i < deathAnimation.Length; i++)
+                for (int i = 0; i < deathAnimation.Length; i++)
                 {
                     Console.WriteLine(deathAnimation[i]);
                     Thread.Sleep(200);
                     Console.SetCursorPosition(0, 0);
                 }
             }
-        }        
+            string AddLetterToGuessWord(string word, char playerLetter, string wordToGuess)
+            {
+                char[] wordToGuessCharArr = wordToGuess.ToCharArray();
+                for(int i = 0; i < wordToGuess.Length; i++)
+                {
+                    if(playerLetter== word[i])
+                    {
+                        wordToGuessCharArr[i] = playerLetter;
+                    }
+                }
+                return new String(wordToGuessCharArr);
+            }
+            bool CheckIfSymbolIsContaied(string word, char playerLetter)
+            {
+                return true;
+            }
+
+        }
     }
 }
