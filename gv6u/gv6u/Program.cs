@@ -421,7 +421,7 @@ namespace hangman
             {
 
                 string word = GetRandomWord(words);
-                string wordToGuess = new(" ", word.Length);
+                const string wordToGuess = new (" ", word.Length);
 
                 List<char> playerUsedLetter = new List<char>();
                 int incorrectGuessCount = 0;
@@ -443,7 +443,7 @@ namespace hangman
                 string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
                 const string WordsFileName = "words.txt";
                 string path = $@"{projectDirectory}/{WordsFileName}";
-                string[] words = File.ReadAllLines(path);
+                string[] word = File.ReadAllLines(path);
                 return words;
 
             }
@@ -502,8 +502,9 @@ namespace hangman
                 Random random = new Random();
                 string worde = words[random.Next(words.Length)];
                 return worde.ToLower();
+                
             }
-            void DrawCurrentGameState(bool inputIsInvalid, int incorrectGuess, string guessedWord, List<char> playerUsedLetters)
+            void DrawCurrentGameState(bool inputIsInvalid, int incorrectGuessCount, string guessedWord, List<char> playerUsedLetters)
             {
                 Console.Clear();
                 Console.WriteLine(wrongGuessesFrames[incorrectGuessCount]);
@@ -526,7 +527,7 @@ namespace hangman
                 return true;
             }
 
-            bool CheckIfPlayerLoses(int icorrectGuessCount)
+            bool CheckIfPlayerLoses(int incorrectGuessCount)
             {
                 if (incorrectGuessCount == 6)
                 {
