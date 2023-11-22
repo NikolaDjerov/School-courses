@@ -59,7 +59,7 @@ namespace game_of_war
             }
             List<Card> GenerateDeck()
             {
-                List<Card> deck = new List<Card>();
+                List<Card> playerDeck = new List<Card>();
                 CardFace[] faces = (CardFace[])Enum.GetValues(typeof(CardFace));
                 CardSuit[] suits = (CardSuit[])Enum.GetValues(typeof(CardSuit));
                 for (int suite = 0; suite < suits.Length; suite++)
@@ -68,16 +68,16 @@ namespace game_of_war
                     {
                         CardFace currentFace = faces[face];
                         CardSuit currentSuit = suits[suite];
-                        deck.Add(new Card
+                        playerDeck.Add(new Card
                         {
                             Face = currentFace,
                             Suite = currentSuit
                         });
                     }
                 }
-                return deck;
+                return playerDeck;
             }
-            void ShuffleDeck(List<Card> deck1)
+            void ShuffleDeck(List<Card> playerDeck)
             {
                 Random random = new Random();
                 for (int i = 0; i < deck.Count; i++)
