@@ -421,7 +421,7 @@ namespace hangman
             {
 
                 string word = GetRandomWord(words);
-                const string wordToGuess = new (" ", word.Length);
+                const string wordToGuess = new('_', word.Length);
 
                 List<char> playerUsedLetter = new List<char>();
                 int incorrectGuessCount = 0;
