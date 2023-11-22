@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -134,6 +135,7 @@ namespace game_of_war
                     {
                         AddCardsToWinnerDeck(secondPlayerDeck, firstPlayerDeck);
                         Console.WriteLine($"Second player does not have enough cards to continue playing...");
+                        break;
                     }
                     AddWarCardsToPool(pool);
                     firstPlayerCard = firstPlayerDeck.Dequeue();
