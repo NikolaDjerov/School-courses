@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squared number", "Squared number\Squared number.csproj", "{49E219D4-311E-46EC-8CDB-AA1D6FBF4FE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49E219D4-311E-46EC-8CDB-AA1D6FBF4FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E219D4-311E-46EC-8CDB-AA1D6FBF4FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E219D4-311E-46EC-8CDB-AA1D6FBF4FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E219D4-311E-46EC-8CDB-AA1D6FBF4FE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0569370D-B1FE-4A44-A53A-EFAF2137CE3A}
+	EndGlobalSection
+EndGlobal
