@@ -18,8 +18,13 @@ namespace falling_rocks
             this.Y = y;
             this.Representation = "(0)";
         }
+        public Player() 
+        {
+
+        }
         public void Draw()
         {
+            
             Console.SetCursorPosition(this.X, this.Y);
             Console.Write(this.Representation);
         }

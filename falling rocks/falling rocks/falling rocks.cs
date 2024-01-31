@@ -20,16 +20,16 @@ namespace falling_rocks
             static string inputFallSpeed;
             static List<Rock> rocks = new List<Rock>();
             static Player player;
-            static List<Rock> rocksToRemove = new List<Rock>(); //made this global
+            static List<Rock> rocksToRemove = new List<Rock>(); 
             static int playerWindowCenterWidth = (Console.WindowWidth - 1) / 2;
             static int consoleMaxHeight = Console.WindowHeight - sizeOfScorePanel;
             static int playerWindowBottomHeight = consoleMaxHeight - 1;
             static int rocksSpawnRate;
             static void Main(string[] args)
             {
-                Console.WriteLine("Rocks spawn rate hardness level (from 1 to 10 - 4 is prefferable)");
+                Console.WriteLine("Rocks spawn rate hardness level (from 1 to 10 - 4 is prefferable)");  
                 inputSpawnRate = Console.ReadLine();
-
+                
                 rocksSpawnRate = ProcessPlayerRocksSpawnRateChoice(inputSpawnRate);
 
                 Console.WriteLine("Rocks fall speed level (from 50 to 150 - 120 is prefferable)");
@@ -78,8 +78,7 @@ namespace falling_rocks
                     fallSpeed = 120;
                 }
                 int totalRockFallSpeed = 200;
-
-                return totalRockFallSpeed + fallSpeed; //test
+                return totalRockFallSpeed + fallSpeed; 
             }
             static void SetWindowProperties()
             {
