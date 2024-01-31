@@ -10,24 +10,23 @@ namespace Bonus_Scoring_System
     {
         static void Main(string[] args)
         {
-            int numStudents = int.Parse(Console.ReadLine());
-            int totalLectures = int.Parse(Console.ReadLine());
-            double additionalBonus = double.Parse(Console.ReadLine());
-            string maxStudent = "";
-            double maxBonus = 0;
-            for (int i = 0; i < numStudents; i++)
+            int numberOfStudents = int.Parse(Console.ReadLine());
+            int numberOfLectures = int.Parse(Console.ReadLine());
+            int additionalBonus = int.Parse(Console.ReadLine());
+            double max = double.MaxValue;
+            int Maxattendances = 0;
+            for (int i = 0; i < numberOfStudents; i++)
             {
-                int studentAttendance = int.Parse(Console.ReadLine());
-                double bonus = (studentAttendance / (double)totalLectures) * (5 + additionalBonus);
-                if (bonus > maxBonus)
+                int Minattendances = int.Parse(Console.ReadLine());
+                double currentBonus = (Minattendances / (double)numberOfLectures) * (5 + additionalBonus);
+                if (currentBonus > max)
                 {
-                    maxBonus = bonus;
-                    maxStudent = $"The student has attended {studentAttendance} lectures";
+                    max = currentBonus;
+                    Maxattendances = Minattendances;
                 }
             }
-            maxBonus = Math.Ceiling(maxBonus);
-
-            Console.WriteLine($"Max Bonus: {maxBonus}. {maxStudent}");
+            Console.WriteLine($"Max Bonus: {Math.Ceiling(max)}.");
+            Console.WriteLine($"The student has attended {Maxattendances} lectures.");
         }
     }
 }
